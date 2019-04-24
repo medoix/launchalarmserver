@@ -1,0 +1,22 @@
+<div class="item">
+    <div class="ui image tiny">
+        <img src="{{this.imageURL}}">
+    </div>
+    <div class="content">
+        <a href="{{this.projectURL}}">
+            <h1 class="ui blue header">{{this.name}}</h1>
+        </a>
+
+        <div class="meta">
+            <span>{{this.meta}}</span>
+        </div>
+        <div class="description">
+            <p> {{this.description}} </p>
+        </div>
+        <div class="extra">
+            {{#each this.labels}}
+                {{addLabels}}
+            {{/each}}
+        </div>
+    </div>
+</div>

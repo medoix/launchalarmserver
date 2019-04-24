@@ -1,0 +1,11 @@
+# NodeJS Modules
+node_modules
+
+# NodeJS Files
+npm-debug.log
+
+# SSH Keys
+*.pem
+
+# OSX Files
+.DS_Store
