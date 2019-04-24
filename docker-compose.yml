@@ -1,0 +1,42 @@
+# docker-compose up -d
+version: '3.1'
+
+services:
+  db:
+    restart: unless-stopped
+    image: mongo
+    ports:
+      - 27017:27017
+    volumes:
+      - /data/launchalarm/db:/data/db
+    environment:
+      MONGO_INITDB_DATABASE: launchalarm
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_ROOT_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ROOT_PASS}
+  db-console:
+    image: mongo-express
+    restart: unless-stopped
+    ports:
+      - 8021:8081
+    links:
+      - db:mongo
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: ${MONGO_ADMIN_PASS}
+      ME_CONFIG_MONGODB_ADMINPASSWORD: ${MONGO_ADMIN_USER}
+      ME_CONFIG_BASICAUTH_USERNAME: ${CONSOLE_USER}
+      ME_CONFIG_BASICAUTH_PASSWORD: ${CONSOLE_PASS}
+  server:
+    restart: unless-stopped
+    image: launchalarmserver:latest
+    ports:
+      - 8020:8080
+    links:
+      - db:mongo
+    environment:
+      VIRTUAL_HOST: launchalarm.com,*.launchalarm.com
+      VIRTUAL_PORT: 8020
+      MONGODB_URI: mongodb://${MONGO_RW_USER}:${MONGO_RW_PASS}@mongo:27017/launchalarm
+      NODE_ENV: production
+  push:
+    restart: unless-stopped
+    image: launchalarmpush:latest
