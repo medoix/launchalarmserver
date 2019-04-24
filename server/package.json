@@ -1,0 +1,58 @@
+{
+  "name": "launchalarmserver",
+  "version": "1.1.0",
+  "description": "Launch Alarm Server",
+  "private": true,
+  "main": "server.js",
+  "scripts": {
+    "start": "node ./server.js",
+    "lint": "node ./node_modules/eslint/bin/eslint.js ./app ./test",
+    "test": "node ./node_modules/mocha/bin/_mocha './test/**/*.js' -u bdd -R spec",
+    "cover": "./node_modules/.bin/babel-node ./node_modules/.bin/isparta cover ./node_modules/mocha/bin/_mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://bitbucket.org/medoix/launchalarmserver"
+  },
+  "keywords": [
+    "user",
+    "account",
+    "api",
+    "rest",
+    "management"
+  ],
+  "author": "Steven Rogers <steven@shivv.com>",
+  "license": "MS Reference",
+  "bugs": {
+    "url": "https://bitbucket.org/medoix/launchalarmserver/issues"
+  },
+  "homepage": "https://launchalarm.com",
+  "dependencies": {
+    "co": "^4.6.0",
+    "co-body": "^4.0.0",
+    "co-monk": "^1.0.0",
+    "emailjs": "^1.0.4",
+    "jwt-simple": "^0.5.0",
+    "koa": "^1.2.0",
+    "koa-cors": "0.0.16",
+    "koa-handlebars": "^0.5.7",
+    "koa-router": "^5.4.0",
+    "koa-static": "^2.0.0",
+    "lodash.defaults": "^4.0.1",
+    "moment": "^2.22.2",
+    "mongodb": "^2.0.55",
+    "mongoskin": "^2.1.0",
+    "monkii": "^1.2.0",
+    "nodemailer": "^2.3.0",
+    "stripe": "^4.5.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.6.5",
+    "chai": "^3.5.0",
+    "eslint": "^2.4.0",
+    "isparta": "^4.0.0",
+    "mocha": "^2.4.5",
+    "supertest": "^1.2.0",
+    "supertest-as-promised": "^3.0.0"
+  }
+}

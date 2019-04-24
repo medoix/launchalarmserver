@@ -1,0 +1,11 @@
+// NodeJS Modules
+node_modules
+
+// Log Files
+*.log
+
+// Cert Files
+*.pem
+*.cert
+*.p12
+*.p8
