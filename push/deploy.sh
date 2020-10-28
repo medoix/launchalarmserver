@@ -2,8 +2,8 @@
 
 set -e
 
-REMOTE_USERNAME="steven"
-REMOTE_HOST="h.medoix.com"
+REMOTE_USERNAME="medoix"
+REMOTE_HOST="192.168.1.10"
 IMAGE_REPOSITORY="launchalarmpush"
 
 #SERVER_URL="launchalarm.com,www.launchalarm.com"
@@ -26,13 +26,13 @@ function build_image {
 build_image latest .
 upload_image_if_needed latest
 
-ssh -tt $REMOTE_USERNAME@$REMOTE_HOST << EOF
-docker rm -f ${IMAGE_REPOSITORY} || true
-docker run \
--d \
---name ${IMAGE_REPOSITORY} \
--e NODE_ENV=production \
-$IMAGE_REPOSITORY:latest
+# ssh -tt $REMOTE_USERNAME@$REMOTE_HOST << EOF
+# docker rm -f ${IMAGE_REPOSITORY} || true
+# docker run \
+# -d \
+# --name ${IMAGE_REPOSITORY} \
+# -e NODE_ENV=production \
+# $IMAGE_REPOSITORY:latest
 
 exit
 EOF
