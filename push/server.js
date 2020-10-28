@@ -50,7 +50,7 @@ apnmessage.topic = "com.launchalarm.app";
 // APN End Settings
 
 var launchOptions = {
-  url: 'https://launchlibrary.net/1.2/launch/next/1', //# PROD
+  url: 'https://ll.thespacedevs.com/2.0.0/launch/upcoming/?format=json&status=1&limit=1', //# PROD
   headers: {
     'User-Agent': 'javascript' // Needed for this API otherwise 403 returns.
   }
@@ -239,7 +239,7 @@ var j = schedule.scheduleJob(cronopts, function(){
     if (!error && response.statusCode == 200) { //# PROD
     //if (!error) { //# TEST
       var obj = JSON.parse(body);
-      var launch = obj.launches;
+      var launch = obj.results;
       // Below var is for testing, can set current time to within 10 mins. Ensure the proper one below that is disabled.
       var currentiso = new moment().toISOString(); //# PROD
       // var currentiso = '2017-03-23T20:00:00.000Z'; //# TEST COUNT DOWN
@@ -260,7 +260,7 @@ var j = schedule.scheduleJob(cronopts, function(){
           gcmdevices = [];
           apndevices = [];
         } else {
-          var launchiso = new moment(launch[l].isostart).toISOString();
+          var launchiso = new moment(launch[l].window_start).toISOString();
           // Can do the below to format correctly or just use the toISOString() function above.
           // var launchiso = new moment(launch[l].isostart).format('YYYY-MM-DD[T]HH:mm:ss.SSS[Z]')
           // log.debug('Retruned ISO Time: ' + launch[l].isostart);
